@@ -1,7 +1,7 @@
 FROM php:8.4-fpm as php
 
 RUN apt-get update -y \
-    && apt-get install -y unzip libpq-dev libcurl4-gnutls-dev \
+    && apt-get install -y git unzip libpq-dev libcurl4-gnutls-dev \
     && docker-php-ext-install pdo pdo_mysql bcmath \
     && pecl install redis \
     && docker-php-ext-enable redis \
