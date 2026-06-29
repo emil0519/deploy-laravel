@@ -19,8 +19,16 @@ services:
             - "8001:8000"
 
         depends_on:
-            - database
-            - redis
+            database:
+                condition: service_healthy
+            redis:
+                condition: service_started
+        healthcheck:
+            test: ["CMD", "php", "artisan", "--version"]
+            interval: 10s
+            timeout: 5s
+            retries: 10
+            start_period: 30s
 
     database:
         image: mysql:8.0
@@ -70,6 +78,13 @@ services:
 
         volumes:
             - ./:/var/www
+        depends_on:
+            php:
+                condition: service_healthy
+            database:
+                condition: service_healthy
+            redis:
+                condition: service_started
 
 volumes:
     db-data:
