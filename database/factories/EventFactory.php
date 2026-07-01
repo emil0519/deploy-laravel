@@ -19,7 +19,8 @@ class EventFactory extends Factory
     {
         return [
             'title' => fake()->sentence(3),
-            'memo'  => fake()->paragraph(),
+            'memo' => fake()->paragraph(),
+            'expired_at' => fake()->dateTimeBetween('now', '+1 month'),
         ];
     }
 }

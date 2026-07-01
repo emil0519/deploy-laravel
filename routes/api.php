@@ -10,4 +10,5 @@ Route::delete('/notes/{note:uuid}', [NotesController::class, 'delete']);
 Route::get('/notes', [NotesController::class, 'index']);
 Route::get('/notes/{note:uuid}', [NotesController::class, 'show']);
 
+Route::get('/events/{event:uuid}', [EventsController::class, 'show']);
 Route::post('/events', [EventsController::class, 'store']);

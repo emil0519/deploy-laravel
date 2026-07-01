@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Actions\CreateEventAction;
 use App\Http\Requests\CreateEventRequest;
 use App\Http\Resources\EventResource;
+use App\Models\Event;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
@@ -17,5 +18,10 @@ class EventsController extends Controller
         return EventResource::make($event->load('options'))
             ->response()
             ->setStatusCode(Response::HTTP_CREATED);
+    }
+
+    public function show(Event $event): EventResource
+    {
+        return EventResource::make($event);
     }
 }
