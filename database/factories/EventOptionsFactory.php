@@ -2,11 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Models\EventOptions;
+use App\Models\EventOption;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<EventOptions>
+ * @extends Factory<EventOption>
  */
 class EventOptionsFactory extends Factory
 {
@@ -18,7 +18,7 @@ class EventOptionsFactory extends Factory
     public function definition(): array
     {
         return [
-            'event_id' => EventOptions::factory(),
+            'event_id' => EventOption::factory(),
             'date_time' => fake()->dateTimeBetween('now', '+1 month'),
         ];
     }
