@@ -28,7 +28,7 @@ class CreateEventTest extends TestCase
             ],
         ];
 
-        $event = Event::factory()->make([
+        $event = Event::factory()->create([
             'title' => $payload['title'],
             'memo' => $payload['memo'],
         ]);
@@ -46,8 +46,7 @@ class CreateEventTest extends TestCase
             ->assertCreated();
 
         $this->assertNotNull($response->json('data'));
-
-        // TODO: verify full EventResource response shape.
+        $this->assertSame($event->uuid, $response->json('data.uuid'));
     }
 
     #[Test]
@@ -122,6 +121,23 @@ class CreateEventTest extends TestCase
         $this->assertFieldIsInvalid(
             ['date_times' => ['2026-07-01T10:00:00+08:00']],
             'date_times.0'
+        );
+    }
+
+    #[Test]
+    public function date_time_item_must_not_be_before_now(): void
+    {
+        $this->assertFieldIsInvalid(
+            [
+                'date_times' => [
+                    now()
+                        ->subSecond()
+                        ->utc()
+                        ->startOfSecond()
+                        ->format('Y-m-d\TH:i:s\Z'),
+                ],
+            ],
+            'date_times.0',
         );
     }
 

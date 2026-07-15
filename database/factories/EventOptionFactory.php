@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends Factory<EventOption>
  */
-class EventOptionsFactory extends Factory
+class EventOptionFactory extends Factory
 {
     /**
      * Define the model's default state.
