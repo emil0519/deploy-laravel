@@ -12,7 +12,7 @@ class ParticipantResource extends JsonResource
         return [
             'uuid' => $this->uuid,
             'name' => $this->name,
-            'responses' => ResponseResource::collection($this->whenLoaded('resources')),
+            'responses' => ResponseResource::collection($this->whenLoaded('responses')),
         ];
     }
 }
