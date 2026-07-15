@@ -15,7 +15,7 @@ class EventParticipantsController extends Controller
     {
         $event = $action->handle($event, $request->participant_name, $request->responses);
 
-        return EventResource::make($event->load('options'))
+        return EventResource::make($event->loadAllRelations())
             ->response()
             ->setStatusCode(Response::HTTP_CREATED);
     }

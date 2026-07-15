@@ -11,9 +11,13 @@ class EventOptionResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
             'uuid' => $this->uuid,
             'date_time' => Date::toIsoString($this->date_time),
+            'summary' => [
+                'yes_count' => $this->yes_count,
+                'not_sure_count' => $this->not_sure_count,
+                'no_count' => $this->no_count,
+            ],
         ];
     }
 }
