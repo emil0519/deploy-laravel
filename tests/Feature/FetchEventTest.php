@@ -23,5 +23,6 @@ class FetchEventTest extends TestCase
         $response->assertSuccessful();
 
         $this->assertNotNull($response->json('data'));
+        $this->assertSame($event->uuid, $response->json('data.uuid'));
     }
 }

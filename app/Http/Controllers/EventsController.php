@@ -22,6 +22,6 @@ class EventsController extends Controller
 
     public function show(Event $event): EventResource
     {
-        return EventResource::make($event);
+        return EventResource::make($event->load('options'));
     }
 }

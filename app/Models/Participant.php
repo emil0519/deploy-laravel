@@ -7,31 +7,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Event extends Model
+class Participant extends Model
 {
     use HasFactory, HasUuids;
 
     protected $guarded = [];
 
-    protected function casts(): array
+    public function responses(): HasMany
     {
-        return [
-            'expired_at' => 'datetime',
-        ];
+        return $this->hasMany(Response::class);
     }
 
     public function uniqueIds(): array
     {
         return ['uuid'];
-    }
-
-    public function options(): HasMany
-    {
-        return $this->hasMany(EventOption::class);
-    }
-
-    public function participants(): HasMany
-    {
-        return $this->hasMany(Participant::class);
     }
 }
