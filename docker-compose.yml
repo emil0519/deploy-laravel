@@ -35,13 +35,8 @@ services:
         healthcheck:
             test:
                 [
-                    "CMD",
-                    "mysqladmin",
-                    "ping",
-                    "-h",
-                    "localhost",
-                    "-uroot",
-                    "-p${DB_PASSWORD}",
+                    "CMD-SHELL",
+                    "mysql -h 127.0.0.1 -P 3306 -u${DB_USERNAME} -p${DB_PASSWORD} -D ${DB_DATABASE} -e 'SELECT 1' >/dev/null 2>&1",
                 ]
             interval: 5s
             timeout: 5s
