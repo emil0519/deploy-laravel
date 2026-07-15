@@ -15,13 +15,13 @@ class EventsController extends Controller
     {
         $event = $action->handle($request->validated());
 
-        return EventResource::make($event->load('options'))
+        return EventResource::make($event->loadAllRelations())
             ->response()
             ->setStatusCode(Response::HTTP_CREATED);
     }
 
     public function show(Event $event): EventResource
     {
-        return EventResource::make($event->load('options'));
+        return EventResource::make($event->loadAllRelations());
     }
 }

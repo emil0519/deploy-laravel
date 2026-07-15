@@ -18,6 +18,7 @@ class EventResource extends JsonResource
             'created_at' => Date::toIsoString($this->created_at),
             'updated_at' => Date::toIsoString($this->updated_at),
             'options' => EventOptionResource::collection($this->whenLoaded('options')),
+            'participants' => ParticipantResource::collection($this->whenLoaded('participants')),
         ];
     }
 }
